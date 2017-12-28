@@ -35,7 +35,7 @@ test('circular detects circular linked lists linked at the head', () => {
   expect(circular(l)).toEqual(true);
 });
 
-test('circular detects non-circular linked lists', () => {
+test('circular detects non-circular linked lists on odd numbered lists', () => {
   const l = new List();
   const a = new Node('a');
   const b = new Node('b');
@@ -45,6 +45,22 @@ test('circular detects non-circular linked lists', () => {
   a.next = b;
   b.next = c;
   c.next = null;
+
+  expect(circular(l)).toEqual(false);
+});
+
+test('circular detects non-circular linked lists on even numbered lists', () => {
+  const l = new List();
+  const a = new Node('a');
+  const b = new Node('b');
+  const c = new Node('c');
+  const d = new Node('d');
+
+  l.head = a;
+  a.next = b;
+  b.next = c;
+  c.next = d;
+  d.next = null;
 
   expect(circular(l)).toEqual(false);
 });

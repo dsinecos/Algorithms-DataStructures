@@ -12,6 +12,42 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+function midpoint(list) {
+    var slow = list.getFirst();
+    var fast = list.getFirst();
+
+    while(fast.next && fast.next.next) {
+        
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    return slow;
+}
 
 module.exports = midpoint;
+
+/*
+// Finding midpoint by deleting nodes until only a single node remains
+
+function midpoint(list) {
+    if(!list.head) { // When the Linked List is empty
+        return null;
+    }
+
+    var lastRemovedFromFirst = false; 
+
+    while(list.head.next !== null) {  // When there are more than two nodes in the Linked List      
+
+        if(list.head.next.next === null) { // When there are only two nodes remaining in the Linked List
+            list.removeLast();
+            return list.head;
+        } else {
+            (lastRemovedFromFirst) ? list.removeLast() : list.removeFirst();
+            lastRemovedFromFirst = !lastRemovedFromFirst;
+        }
+    }
+
+    return list.head;
+}
+*/

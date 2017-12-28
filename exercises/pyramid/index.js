@@ -14,6 +14,36 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function printLine(total, step) {
+    var step = step || 1;
+    // console.log("Step number : " + step);
+    var totalPositions = 2*total-1;
+    // console.log("Total positions : " + totalPositions);
+    var hashRepeat = 2*step-1;
+    // console.log("hashRepeat : " + hashRepeat);
+    var spaceRepeat = (totalPositions-hashRepeat)/2;
+    // console.log("spaceRepeat : " + spaceRepeat);
+
+    var hashString = "#".repeat(hashRepeat);
+    var spaceString = " ".repeat(spaceRepeat);
+
+    // console.log(spaceString+hashString+spaceString);
+
+    console.log(" ".repeat(spaceRepeat) + "#".repeat(hashRepeat) + " ".repeat(spaceRepeat));
+
+    if(step === total) {
+        return;
+    } else {
+        printLine(total, step+1);
+    }
+}
+
+function pyramid(n) {
+    
+    printLine(n);
+
+}
+
+pyramid(3);
 
 module.exports = pyramid;
